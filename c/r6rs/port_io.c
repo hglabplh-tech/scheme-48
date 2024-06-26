@@ -13,14 +13,13 @@
 /* The s48 header files */
 #include "scheme48.h"
 #include "scheme48vm.h"		/* ps_close_fd() */
-#include "posix.h"
 #include "c-mods.h"
 #include "unix.h"
 #include "fd-io.h"
 #include "io.h"
 
 /* our header to export and define interface */
-#include "port_io.h"
+
 
 
 
