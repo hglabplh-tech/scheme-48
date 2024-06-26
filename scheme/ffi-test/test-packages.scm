@@ -58,7 +58,8 @@
 	  ffi-weak-pointer-ref
 	  ffi-check-string-latin-1
 	  ffi-check-string-utf-8 
-	  ffi-check-string-utf-16)
+	  ffi-check-string-utf-16
+		ffi-check-string-utf-16-be)
   (open scheme test-suites
 	load-dynamic-externals
 	external-calls primitives records 
@@ -108,10 +109,16 @@
 	ffi-funcs external-calls)
   (files ffi-buf-check))
 
+  (define-structure ffi-string-test (export ffi-string-tests)
+    (open scheme test-suites load-dynamic-externals
+  	ffi-funcs external-calls)
+    (files ffi-string-check))
+
 (define-structure ffi-test (export ffi-tests)
   (open scheme test-suites
 	ffi-base-test ffi-list-test ffi-binding-test
-	ffi-aggregates-test ffi-misc-test ffi-trampoline-test ffi-buf-test)
+	ffi-aggregates-test ffi-misc-test ffi-trampoline-test
+	ffi-string-test ffi-buf-test)
   (begin
     (define-test-suite ffi-tests
       (ffi-base-tests 
@@ -120,4 +127,5 @@
        ffi-aggregates-tests 
        ffi-misc-tests 
        ffi-trampoline-tests
-       ffi-buf-tests))))
+       ffi-buf-tests
+       ffi-string-tests))))

@@ -531,6 +531,23 @@ s48_ref_t ffi_check_string_utf_16 (s48_call_t call, s48_ref_t sch_string)
   return result;
 }
 
+s48_ref_t ffi_check_string_utf_16_be (s48_call_t call, s48_ref_t sch_string)
+{
+  s48_ref_t result;
+  int i;
+  uint16_t* buffer = ffi_string_to_utf_16(call, sch_string);
+  long length = s48_string_utf_16be_length_2(call, sch_string);
+  long len = length;
+  length *= sizeof(uint16_t);
+  result = s48_make_vector_2(call, len, s48_false_2(call));
+  for (i = 0; i < len; i++)
+    {
+      uint16_t element = *(buffer + i);
+      s48_vector_set_2(call, result, i, s48_enter_long_2(call, element));
+    }
+  return result;
+}
+
 /* internally used functions */
 char* ffi_string_to_latin_1(s48_call_t call, s48_ref_t sch_in)
 {
@@ -542,6 +559,17 @@ char* ffi_string_to_latin_1(s48_call_t call, s48_ref_t sch_in)
 }
 
 uint16_t* ffi_string_to_utf_16(s48_call_t call, s48_ref_t sch_in)
+{
+  uint16_t* buffer = NULL;
+  /* s48_string_utf_16le_length_2 is defined to return the length in codepoints */
+  long length = s48_string_utf_16le_length_2(call, sch_in);
+  length *= sizeof(uint16_t); /* fix code - point length of 2 byte */
+  buffer = (uint16_t*)s48_make_local_buf(call, length);
+  s48_copy_string_to_utf_16le_2(call, sch_in, buffer);
+  return buffer;
+}
+
+uint16_t* ffi_string_to_utf_16_be(s48_call_t call, s48_ref_t sch_in)
 {
   uint16_t* buffer = NULL;
   /* s48_string_utf_16le_length_2 is defined to return the length in codepoints */
@@ -614,6 +642,7 @@ void s48_on_load(void)
   S48_EXPORT_FUNCTION(ffi_check_string_latin_1);
   S48_EXPORT_FUNCTION(ffi_check_string_utf_8);
   S48_EXPORT_FUNCTION(ffi_check_string_utf_16);
+  S48_EXPORT_FUNCTION(ffi_check_string_utf_16_be);
 }
 
 void s48_on_reload(void)
