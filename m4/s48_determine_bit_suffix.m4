@@ -8,7 +8,7 @@ AC_DEFUN([S48_DETERMINE_BIT_SUFFIX], [dnl
      if test $BIT_SUFFIX; then
        AC_MSG_RESULT([You forced BIT_SUFFIX to be $BIT_SUFFIX.])
      else
-       BIT_SUFFIX=`expr $ac_cv_sizeof_void_p \* $ac_cv_bits_per_byte`
+       BIT_SUFFIX=$((ac_cv_sizeof_void_p * ac_cv_bits_per_byte))
        AC_MSG_RESULT($BIT_SUFFIX)
      fi
      AC_DEFINE_UNQUOTED(WORDSIZE, [$BIT_SUFFIX], [Check for number of bits in a word])
