@@ -1,2 +1,12 @@
 
 Ohne Titel/
+/.idea
+/bench
+/build
+c/scheme48.h
+c/scheme48arch.h
+c/scheme48vm-32.c
+c/scheme48vm-64.c
+c/sysdep.h
+c/sysdep.h.in
+c/sysdep.h.in~
