@@ -55,14 +55,7 @@
     (collect)
     (check (not (ffi-weak-pointer-ref w)))))
 
-(define-test-case ffi-strings-test ffi-misc-tests
-  (let ((string "Grüße"))
-    (let ((latin-1 (ffi-check-string-latin-1 string))
-	  (utf-8 (ffi-check-string-utf-8 string)))
-      (check (eq? (byte-vector-ref latin-1 2) 252))
-      (check (eq? (byte-vector-ref latin-1 3) 223))
-      (check (eq? (byte-vector-ref utf-8 3) 188))
-      (check (eq? (byte-vector-ref utf-8 5) 159)))))
+
 
 (define-test-case ffi-extract-byte-vector-test ffi-misc-tests
   (let ((bv (make-byte-vector 10 97)))

@@ -55,3 +55,11 @@
       (check (eq? (byte-vector-ref utf-16-le 5) #xfc))
       )
     ))
+(define-test-case ffi-strings-test ffi-string-tests
+  (let ((string "Gr��e"))
+    (let ((latin-1 (ffi-check-string-latin-1 string))
+           (utf-8 (ffi-check-string-utf-8 string)))
+      (check (eq? (byte-vector-ref latin-1 2) 252))
+      (check (eq? (byte-vector-ref latin-1 3) 223))
+      (check (eq? (byte-vector-ref utf-8 3) 188))
+      (check (eq? (byte-vector-ref utf-8 5) 159)))))
