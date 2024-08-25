@@ -361,6 +361,24 @@
 	 bytevector-ieee
 	 bytevector-string))
 
+(define-structure r6rs-simple-port-file-io
+	r6rs-simple-port-file-io-interface
+	(open scheme
+		r6rs-enums
+		load-dynamic-externals
+		external-calls
+		byte-vectors
+		variable-argument-lists
+		text-codecs
+		(modify encodings (prefix enc:))
+		bitwise
+		exceptions
+		(subset primitives (copy-bytes! unspecific)))
+	(files files
+		port-io
+		io-transcoders
+		io-conditions))
+
 (define-structure r6rs-lists r6rs-lists-interface
   (open scheme
 	exceptions)
@@ -401,6 +419,23 @@
 	r6rs-lists
 	exceptions)
   (files n-ary-comparison))
+
+
+(define-interface r6rs-simple-port-file-io-interface
+	(export &i/o
+		&i/o-read
+		&i/o-invalid-position
+		&i/o-filename
+		&i/o-file-is-read-only
+		&i/o-file-protection
+		&i/o-file-already-exists
+		&i/o-file-does-not-exist
+		&i/o-port
+		open-file-input-port
+		open-file-output-port
+		open-file-input-output-port
+
+		))
 
 (define-interface r6rs-bitwise-interface
   (export  bitwise-not

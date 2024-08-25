@@ -283,6 +283,11 @@ ps_open_input_file(char *name, long *status)
 }
 
 FILE *
+ps_open_input_output_file(char *name, long *status) {
+    return ps_really_open_file(name, status, "rw");
+}
+
+FILE *
 ps_open_output_file(char *name, long *status)
 {
   return ps_really_open_file(name, status, "w");

@@ -8,6 +8,7 @@
 
 extern FILE	*ps_open_input_file(char *, long *);
 extern FILE	*ps_open_output_file(char *, long *);
+extern FILE	*ps_open_input_output_file(char *, long *);
 extern long	ps_close(FILE *);
 extern char	ps_read_char(FILE *, char *, long *, char);
 extern long	ps_read_integer(FILE *, char *, long *);

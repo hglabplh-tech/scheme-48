@@ -128,7 +128,7 @@ ffi_vector_set(s48_call_t call,
 s48_ref_t
 ffi_vector_ref(s48_call_t call,
 	       s48_ref_t sch_vector,
-	       s48_ref_t sch_index)
+	       s48_reft sch_index)
 {
   int index = s48_extract_long_2(call, sch_index);
   s48_ref_t result = s48_vector_ref_2(call, sch_vector, index);
